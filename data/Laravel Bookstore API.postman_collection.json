@@ -1,0 +1,2318 @@
+{
+	"info": {
+		"_postman_id": "ff586b2e-b2a6-4518-8800-0b1bdea5b3d8",
+		"name": "Laravel Bookstore API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21965281"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Phạm Lê Đăng Khoa\",\r\n    \"phone\": \"0904325481\",\r\n    \"province_id\": 202,\r\n    \"district_id\": 1453,\r\n    \"ward_id\": 21105,\r\n    \"address\": \"16A Lạc Long Quân, Phường 5, Quận 11, TP. Hồ Chí Minh\",\r\n    \"email\": \"phamledangkhoa@gmail.com\",\r\n    \"password\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();\r",
+									"pm.environment.set('access_token', res.data.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "tangtrinhquang@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();\r",
+									"pm.environment.set('access_token', res.data.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/refresh-token",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get User List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/7NeL9g4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"7NeL9g4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Vo Le Tan",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0902375381",
+									"type": "text"
+								},
+								{
+									"key": "province_id",
+									"value": "202",
+									"type": "text"
+								},
+								{
+									"key": "district_id",
+									"value": "1405",
+									"type": "text"
+								},
+								{
+									"key": "ward_id",
+									"value": "2202",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "abc",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "voletan@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tăng Trình Quang\",\r\n    \"phone\": \"0902375381\",\r\n    \"province_id\": 202,\r\n    \"district_id\": 1447,\r\n    \"ward_id\": 21105,\r\n    \"address\": \"16A Lạc Long Quân Phường 5 Quận 11\",\r\n    \"password\": \"1\",\r\n    \"role\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/NqldvJ-",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"NqldvJ-"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/oMnnfWj",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"oMnnfWj"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "currentPassword",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "newPassword",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "confirmPassword",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/change-password",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Paginate User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/user/paginate/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"paginate",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Add Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Truyện Kiều",
+									"type": "text"
+								},
+								{
+									"key": "author_id",
+									"value": "7NvXdwo",
+									"type": "text"
+								},
+								{
+									"key": "genre_id",
+									"value": "o-MLvbE",
+									"type": "text"
+								},
+								{
+									"key": "publisher_id",
+									"value": "rpzBnWh",
+									"type": "text"
+								},
+								{
+									"key": "height",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "length",
+									"value": "15",
+									"type": "text"
+								},
+								{
+									"key": "width",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "400",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "50000",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Quang/Desktop/Tác giả/Tượng_đài_cụ_Nguyễn_Du.jpg"
+								},
+								{
+									"key": "page",
+									"value": "40",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Truyện Kiều là tiểu thuyết viết bằng thơ lục bát. Truyện phản ánh xã hội đương thời thông qua cuộc đời của nhân vật chính Vương Thuý Kiều",
+									"type": "text"
+								},
+								{
+									"key": "countInStock",
+									"value": "100",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/book",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Đắc Nhân Tâm",
+									"type": "text"
+								},
+								{
+									"key": "author_id",
+									"value": "-pLy8PF",
+									"type": "text"
+								},
+								{
+									"key": "genre_id",
+									"value": "zRnFQW-",
+									"type": "text"
+								},
+								{
+									"key": "publisher_id",
+									"value": "Ir9qZ9Q",
+									"type": "text"
+								},
+								{
+									"key": "height",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "length",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "width",
+									"value": "15",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "800",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "150000",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Quang/Desktop/nxbtre_thumb_30552016_085555.jpg"
+								},
+								{
+									"key": "page",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Good job !",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/book/QzsuVW4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"QzsuVW4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/book/srUwHdR",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"srUwHdR"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book List",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/book",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book By ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/book/JsH7nrq",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"JsH7nrq"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Paginate Book",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/book/paginate/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"paginate",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Book",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"keyword_type\": \"BETWEEN_PRICE\",\r\n    \"from_val1\": \"65000\",\r\n    \"to_val2\": 900000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/book/search/2300",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"search",
+								"2300"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Book",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"keyword_type\": \"NEWBOOK\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/book/filter",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"filter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Statistic Book",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"statistic_type\": \"SOLDOUT_BOOK\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/book/statistic",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"statistic"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "Update Author",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "tangtrinhquang",
+									"type": "text"
+								},
+								{
+									"key": "portrait",
+									"type": "file",
+									"src": "/C:/Users/Quang/Desktop/dacnhantam_2_1_1.jpg"
+								},
+								{
+									"key": "description",
+									"value": "Good !",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/author/tLdgEyp",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"author",
+								"tLdgEyp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Author",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Nguyễn Nhật Ánh\n",
+									"type": "text"
+								},
+								{
+									"key": "portrait",
+									"type": "file",
+									"src": "/C:/Users/Quang/Desktop/Nguyen-Nhat-Anh-vhsaigon-1.jpg"
+								},
+								{
+									"key": "description",
+									"value": "Nguyễn Nhật Ánh (sinh ngày 7 tháng 5 năm 1955 ở Thăng Bình, Quảng Nam) là một nhà văn, nhà thơ, bình luận viên Việt Nam",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/author/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"author",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Author",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/author/hbVUaly",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"author",
+								"hbVUaly"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Author By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/author/6U1VqmC",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"author",
+								"6U1VqmC"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Author List",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/author",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"author"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Paginate Author",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/author/paginate/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"author",
+								"paginate",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Genre",
+			"item": [
+				{
+					"name": "Add Genre",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "1",
+								"value": "aa",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Truyện thơ",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Truyện thơ là những truyện kể dài bằng thơ, có sự kết hợp giữa hai yếu tố tự sự và trữ tình, phản ánh cuộc sống của người nghèo khổ, khát vọng về tình yêu tự do, hạnh phúc và công lí.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/genre",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"genre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Genre",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "1",
+								"value": "aa",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Romantic",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "u can do !!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/genre",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"genre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Genre",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/genre/Rz_mMcz",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"genre",
+								"Rz_mMcz"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Genre List",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/genre",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"genre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Genre By ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/genre/AmlQfmd",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"genre",
+								"AmlQfmd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Paginate Genre",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/genre/paginate/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"genre",
+								"paginate",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Publisher",
+			"item": [
+				{
+					"name": "Add Publisher",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Nhà xuất bản Kim Đồng",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Được xem là 1 nhà xuất bản hay nhất !",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/publisher",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"publisher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Publisher",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Kim LuanA",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Very good !",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/publisher/0-QzhND",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"publisher",
+								"0-QzhND"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Publisher",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/publisher/VYUg7yW",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"publisher",
+								"VYUg7yW"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Publisher List",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/publisher",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"publisher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Publisher By ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/publisher/LSkC3Bf",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"publisher",
+								"LSkC3Bf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Paginate Publisher",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/publisher/paginate/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"publisher",
+								"paginate",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GHN",
+			"item": [
+				{
+					"name": "Address",
+					"item": [
+						{
+							"name": "Get Provinces",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "5aa20d5d-59bd-11ed-8a70-52fa25d1292f",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "https://online-gateway.ghn.vn/shiip/public-api/master-data/province",
+									"protocol": "https",
+									"host": [
+										"online-gateway",
+										"ghn",
+										"vn"
+									],
+									"path": [
+										"shiip",
+										"public-api",
+										"master-data",
+										"province"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Districts",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "5aa20d5d-59bd-11ed-8a70-52fa25d1292f",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"province_id\": 202\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://online-gateway.ghn.vn/shiip/public-api/master-data/district",
+									"protocol": "https",
+									"host": [
+										"online-gateway",
+										"ghn",
+										"vn"
+									],
+									"path": [
+										"shiip",
+										"public-api",
+										"master-data",
+										"district"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Wards",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "7c1ab69a-59a1-11ed-b26c-02ed291d830a",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=1453",
+									"protocol": "https",
+									"host": [
+										"dev-online-gateway",
+										"ghn",
+										"vn"
+									],
+									"path": [
+										"shiip",
+										"public-api",
+										"master-data",
+										"ward"
+									],
+									"query": [
+										{
+											"key": "district_id",
+											"value": "1453"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Service",
+					"item": [
+						{
+							"name": "Calculate Fee",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "7c1ab69a-59a1-11ed-b26c-02ed291d830a",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from_district_id\": 1447,\r\n    \"service_type_id\": 2,\r\n    \"to_district_id\": 1453,\r\n    \"to_ward_code\":\" 21105\",\r\n    \"height\": 18,\r\n    \"length\": 17,\r\n    \"width\": 14,\r\n    \"weight\": 900,\r\n    \"insurance_value\": 110000,\r\n    \"coupon\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee",
+									"protocol": "https",
+									"host": [
+										"dev-online-gateway",
+										"ghn",
+										"vn"
+									],
+									"path": [
+										"shiip",
+										"public-api",
+										"v2",
+										"shipping-order",
+										"fee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Services",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "7c1ab69a-59a1-11ed-b26c-02ed291d830a",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"shop_id\": 120387,\r\n    \"from_district\": 1447,\r\n    \"to_district\": 1453 \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/available-services",
+									"protocol": "https",
+									"host": [
+										"dev-online-gateway",
+										"ghn",
+										"vn"
+									],
+									"path": [
+										"shiip",
+										"public-api",
+										"v2",
+										"shipping-order",
+										"available-services"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "Estimated Delivery Time",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "ShopId",
+										"value": "120387",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "7c1ab69a-59a1-11ed-b26c-02ed291d830a",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from_district_id\": 1447,\r\n    \"from_ward_code\": \"20503\",\r\n    \"to_district_id\": 1453,\r\n    \"to_ward_code\": \"21105\",\r\n    \"service_id\": 53321\r\n}"
+								},
+								"url": {
+									"raw": "https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/leadtime",
+									"protocol": "https",
+									"host": [
+										"dev-online-gateway",
+										"ghn",
+										"vn"
+									],
+									"path": [
+										"shiip",
+										"public-api",
+										"v2",
+										"shipping-order",
+										"leadtime"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Order",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "ShopId",
+										"value": "120387",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "7c1ab69a-59a1-11ed-b26c-02ed291d830a",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"payment_type_id\": 2,\r\n    \"note\": \"Giao hàng cẩn thận !\",\r\n    \"from_name\": \"Cửa hàng sách Tandym\",\r\n    \"from_phone\": \"0384567567\",\r\n    \"from_address\": \"273 An Dương Vương\",\r\n    \"from_ward_name\": \"Phường 3\",\r\n    \"from_district_name\": \"Quận 5\",\r\n    \"from_province_name\": \"TP. Hồ Chí Minh\",\r\n    \"required_note\": \"CHOTHUHANG\",\r\n    \"return_name\": \"Cửa hàng sách Tandym\",\r\n    \"return_phone\": \"0384567567\",\r\n    \"return_address\": \"273 An Dương Vương\",\r\n    \"return_ward_name\": \"Phường 3\",\r\n    \"return_district_name\": \"Quận 5\",\r\n    \"return_province_name\": \"TP. Hồ Chí Minh\",\r\n    \"client_order_code\": null,\r\n    \"to_name\": \"Phạm Lê Đăng Khoa\",\r\n    \"to_phone\": \"0904325481\",\r\n    \"to_address\": \"16A Lạc Long Quân\",\r\n    \"to_ward_name\": \"Phường 5\",\r\n    \"to_district_name\": \"Quận 11\",\r\n    \"to_province_name\": \"TP. Hồ Chí Minh\",\r\n    \"cod_amount\": 130900,\r\n    \"content\": null,\r\n    \"weight\": 900,\r\n    \"length\": 17,\r\n    \"width\": 14,\r\n    \"height\": 18,\r\n    \"pick_station_id\": null,\r\n    \"deliver_station_id\": null,\r\n    \"insurance_value\": 130900,\r\n    \"service_type_id\": 2,\r\n    \"coupon\": null,\r\n    \"pick_shift\": null,\r\n    \"pickup_time\": null,\r\n    \"items\": [\r\n        {\r\n            \"name\": \"Tôi thấy hoa vàng trên cỏ xanh\",\r\n            \"code\": \"xU1s60e\",\r\n            \"quantity\": 1,\r\n            \"price\": 60000,\r\n            \"length\": 15,\r\n            \"width\": 12,\r\n            \"height\": 8\r\n        },\r\n        {\r\n            \"name\": \"Truyện Kiều\",\r\n            \"code\": \"4n01Y3N\",\r\n            \"quantity\": 1,\r\n            \"price\": 50000,\r\n            \"length\": 15,\r\n            \"width\": 12,\r\n            \"height\": 8\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/create",
+									"protocol": "https",
+									"host": [
+										"dev-online-gateway",
+										"ghn",
+										"vn"
+									],
+									"path": [
+										"shiip",
+										"public-api",
+										"v2",
+										"shipping-order",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Order By Order Code",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "ShopId",
+										"value": "120387",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "7c1ab69a-59a1-11ed-b26c-02ed291d830a",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"order_code\": \"LLUNMT\"\r\n}"
+								},
+								"url": {
+									"raw": "https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/detail",
+									"protocol": "https",
+									"host": [
+										"dev-online-gateway",
+										"ghn",
+										"vn"
+									],
+									"path": [
+										"shiip",
+										"public-api",
+										"v2",
+										"shipping-order",
+										"detail"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cancel Order",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "ShopId",
+										"value": "120387",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "7c1ab69a-59a1-11ed-b26c-02ed291d830a",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"order_codes\":[\"LLUNEF\"]\r\n}"
+								},
+								"url": {
+									"raw": "https://dev-online-gateway.ghn.vn/shiip/public-api/v2/switch-status/cancel",
+									"protocol": "https",
+									"host": [
+										"dev-online-gateway",
+										"ghn",
+										"vn"
+									],
+									"path": [
+										"shiip",
+										"public-api",
+										"v2",
+										"switch-status",
+										"cancel"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Handle Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"service_id\": 53320,\r\n    \"service_type_id\": 2,\r\n    \"user_id\": \"JFgNCEB\",\r\n    \"name\": \"Phạm Lê Đăng Khoa\",\r\n    \"phone\": \"0904325481\",\r\n    \"address\": \"16A Lạc Long Quân, Phường 5, Quận 11, TP. Hồ Chí Minh\",\r\n    \"productFee\": \"110000\",\r\n    \"shipFee\": \"20900\",\r\n    \"status\": \"Unprocessed\",\r\n    \"items\": [\r\n        {\r\n            \"book_id\": \"4n01Y3N\",\r\n            \"quantity\": 1,\r\n            \"price\": 50000\r\n        },\r\n        {\r\n            \"book_id\": \"xU1s60e\",\r\n            \"quantity\": 1,\r\n            \"price\": 60000\r\n        }\r\n    ] \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/order",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Handle Order Detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "order_id",
+									"value": "JIZXhOM",
+									"type": "text"
+								},
+								{
+									"key": "book_id",
+									"value": "3s5TRCB",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "15",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "15000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/orderdetail",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"orderdetail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status_temp\": \"ready_to_pick\",\r\n    \"order_code\": \"LLUNMT\",\r\n    \"service_id\": 53320,\r\n    \"service_type_id\": 2,\r\n    \"user_id\": \"JFgNCEB\",\r\n    \"name\": \"Phạm Lê Đăng Khoa\",\r\n    \"phone\": \"0904325481\",\r\n    \"address\": \"16A Lạc Long Quân, Phường 5, Quận 11, TP. Hồ Chí Minh\",\r\n    \"productFee\": \"110000\",\r\n    \"shipFee\": \"20900\",\r\n    \"status\": \"Cancel\",\r\n    \"height\": 18,\r\n    \"length\": 17,\r\n    \"width\": 14,\r\n    \"weight\": 900,\r\n    \"items\": [\r\n        {\r\n            \"book_id\": \"4n01Y3N\",\r\n            \"quantity\": 1,\r\n            \"price\": 50000\r\n        },\r\n        {\r\n            \"book_id\": \"xU1s60e\",\r\n            \"quantity\": 1,\r\n            \"price\": 60000\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/order/uoYXjPY",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"order",
+								"uoYXjPY"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/order/4aWlzuP",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"order",
+								"4aWlzuP"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/order/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"order",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/orderdetail/CXLBtrT",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"orderdetail",
+								"CXLBtrT"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
