@@ -1,5 +1,5 @@
 <h1>RESTAPI - bookstore</h1>
-<hr><p>Building REST API project with bookstore</p><h2>💻 Technologies Used</h2>
+<hr><p>Building REST API with bookstore</p><h2>💻 Technologies Used</h2>
 <hr><ul>
 <li>Framework PHP: Laravel</li>
 </ul><ul>
